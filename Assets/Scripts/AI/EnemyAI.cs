@@ -12,6 +12,13 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     float baseCastDistance;
 
+    [SerializeField]
+    Transform visionPosition;
+    [SerializeField]
+    float baseVisionCone;
+    [SerializeField]
+    float baseVisionRange;
+
     Vector3 baseScale;
 
     string facingDirection;
@@ -25,11 +32,6 @@ public class EnemyAI : MonoBehaviour
         facingDirection = Right;
         baseScale = transform.localScale;
         rigidbody = GetComponent<Rigidbody2D>();
-    }
-
-    void Update()
-    {
-
     }
 
     private void FixedUpdate()
@@ -107,5 +109,18 @@ public class EnemyAI : MonoBehaviour
         }
 
         return val;
+    }
+
+    bool DoesSeeEnemy()
+    {
+        bool val = false;
+        float visionRange = baseVisionRange;
+        if (facingDirection == Left)
+        {
+            visionRange = -baseVisionRange;
+        }
+        return val;
+        float angle = Vector3.Angle(baseScale, visionPosition.right);
+        RaycastHit2D ray = Physics2D.Raycast(visionPosition.position, baseScale, visionRange);
     }
 }

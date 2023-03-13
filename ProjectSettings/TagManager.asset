@@ -47,3 +47,6 @@ TagManager:
   - name: Chars
     uniqueID: 1771212013
     locked: 0
+  - name: Terrain
+    uniqueID: 2457666389
+    locked: 0
