@@ -9,7 +9,7 @@ public class Vision : MonoBehaviour
     private float angle;
 
     public GameObject enemy;
-    private EnemyAI enemyAI;
+    private AIController controller;
     [SerializeField]
     Transform visionPosition;
     [SerializeField]
@@ -24,12 +24,12 @@ public class Vision : MonoBehaviour
 
     void Start()
     {
-        enemyAI = enemy.GetComponent<EnemyAI>();
+        controller = enemy.GetComponent<AIController>();
     }
 
     private void FixedUpdate()
     {
-        visionDirection = enemyAI.facingDirection;
+        visionDirection = controller.facingDirection;
         Vector2 direction = player.position - transform.position;
         if (visionDirection == Right)
         {

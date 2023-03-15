@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class PatrolMode : MonoBehaviour
 {
     const string Left = "left";
     const string Right = "right";
+    private AIController controller;
 
     [SerializeField]
     Transform castPosition;
     [SerializeField]
     float baseCastDistance;
 
-    Vector3 baseScale;
-
-    public string facingDirection;
+    private Vector3 baseScale;
+    private string facingDirection;
 
     Rigidbody2D rigidbody;
     [SerializeField]
@@ -22,13 +22,14 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
-        facingDirection = Right;
-        baseScale = transform.localScale;
+        controller = this.GetComponent<AIController>();
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
+        facingDirection = controller.facingDirection;
+        baseScale = controller.baseScale;
         float velocityX = speed;
 
         if(facingDirection == Left)
@@ -41,31 +42,13 @@ public class EnemyAI : MonoBehaviour
         {
             if (facingDirection == Left)
             {
-                ChangeDirection(Right);
+                controller.ChangeDirection(Right);
             }
             else if (facingDirection == Right)
             {
-                ChangeDirection(Left);
+                controller.ChangeDirection(Left);
             }
         }
-    }
-
-    void ChangeDirection(string newDirection)
-    {
-        Vector3 newScale = baseScale;
-
-        if (newDirection == Left)
-        {
-            newScale.x = -baseScale.x;
-        }
-        else if (newDirection == Right)
-        {
-            newScale.x = baseScale.x;
-        }
-
-        transform.localScale = newScale;
-
-        facingDirection = newDirection;
     }
 
     bool IsHittingWall()
