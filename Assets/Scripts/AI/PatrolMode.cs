@@ -13,7 +13,6 @@ public class PatrolMode : MonoBehaviour
     [SerializeField]
     float baseCastDistance;
 
-    private Vector3 baseScale;
     private string facingDirection;
 
     Rigidbody2D rigidbody;
@@ -29,7 +28,6 @@ public class PatrolMode : MonoBehaviour
     public void FixedUpdate()
     {
         facingDirection = controller.facingDirection;
-        baseScale = controller.baseScale;
         float velocityX = speed;
 
         if(facingDirection == Left)

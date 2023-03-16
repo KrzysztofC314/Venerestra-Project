@@ -7,10 +7,10 @@ public class AIController : MonoBehaviour
     const string Left = "left";
     const string Right = "right";
     
-    public Vector3 baseScale;
-    
+    [HideInInspector]
     public string facingDirection;
-
+    [HideInInspector]
+    public Vector3 baseScale;
     private void Awake()
     {
         
