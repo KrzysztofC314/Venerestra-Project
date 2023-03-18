@@ -7,6 +7,7 @@ public class Vision : MonoBehaviour
     const string Left = "left";
     const string Right = "right";
     private float angle;
+    
 
     public GameObject enemy;
     private AIController controller;
@@ -46,6 +47,7 @@ public class Vision : MonoBehaviour
             {
                 print("located");
                 Debug.DrawRay(visionPosition.position, direction, Color.blue);
+                controller.state = AIController.State.Chase;
             }
         }
     }

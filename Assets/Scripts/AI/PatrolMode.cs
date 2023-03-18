@@ -15,14 +15,14 @@ public class PatrolMode : MonoBehaviour
 
     private string facingDirection;
 
-    Rigidbody2D rigidbody;
+    Rigidbody2D rb;
     [SerializeField]
     float speed = 5;
 
     void Start()
     {
         controller = this.GetComponent<AIController>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void FixedUpdate()
@@ -35,7 +35,7 @@ public class PatrolMode : MonoBehaviour
             velocityX = -speed;
         }
 
-        rigidbody.velocity = new Vector2(velocityX, rigidbody.velocity.y);
+        rb.velocity = new Vector2(velocityX, rb.velocity.y);
         if (IsHittingWall()||IsNearEdge())
         {
             if (facingDirection == Left)

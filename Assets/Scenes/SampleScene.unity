@@ -720,7 +720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &991520475
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -781,7 +781,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 991520474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.63, y: -1.37, z: 0}
+  m_LocalPosition: {x: -7.74, y: 1.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -967,93 +967,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1284772746
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1284772748}
-  - component: {fileID: 1284772747}
-  m_Layer: 0
-  m_Name: A*
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1284772747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1284772746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  data:
-    dataString: UEsDBBQAAAgIAAAIIexdVs0OXQIAABQFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzk3GJhRCb60hpIcEJrSTiy/CWmMNsuTRR/jI8N+7km3sutMT4r23u29XK38SLk0FmVV6pTl7UQzItxHxZ/Jl1JHPcKJ7Jbf8Aq3mnTNbeBENmjdquUI89mFGlWA1z77LvfDiCEEnea50uWR7SJSxBuGcCgNIaWV9tEToc0RO+HM39yFnPI1n/nTB0zwaXfGYgbSgO2krbGW1yslM0LIC5i134vFDo45rmcRmGoU3nikhuGmcEHuuQqcJrYzDPlDAOMXOQvn4/sEnK4DvC+tT9+PXeW7ANq40PS+4xhnVickPVQ+upOZQW/ugwvlS00lwVed8+Ye+iwOda1U+t2XjyJewBc8Ob/ScUWN7g+3Di571MKAjFQe6E/BegHxVK62cZEha7XyoMzBedH9vnSUFZIcOr60OQFf9/3p8D9fQ/CkRvNx56n5SA1uhwsTD5YPGu/mJhsNqmCYFot7FbwO/6L6/Qw3xxLWxSDVdSm9vp5z2UrIMM/PdOJsoLSHAjekKJBX2vME0dniDA65XdsA8Uf9amuIN1z6CQUiAO30UDaiNOt4uyxTq+AKmWDsruITOtCdecU6JkrJesP5M2rCt0znNemF7x9nfq0Xm2XQOEcsn8DibznaPd3HOZrD7+sDGLIrn0xkJu8cl9knFpjbajAdvTXbJJe5Z+xEZrTStwrIzTY8rfilVb+Rc5mqbaQC5rjPcjIPGIvgu2ZJxHNAWrOUy3Df5TIlQ2QFYekuUhk6XJ6tp2mVJScU/lPVISpLw1UiJh2+7vNHwweHoi7fJruT6B1BLAwQUAAAICAAACCHs/HqKvW0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0kmWymWWqQUqaSaqFuZl5koWuYVqKeWqSqXGKUYqBoaWZuVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAACCHsXVbNDl0CAAAUBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAACCHs/HqKvW0AAAB4AAAACQAkAAAAAAAAAAAAAACqAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAGIDAAAAAA==
-    upgradeData: 
-    file_cachedStartup: {fileID: 0}
-    data_cachedStartup: 
-    cacheStartup: 0
-  showNavGraphs: 1
-  showUnwalkableNodes: 1
-  debugMode: 0
-  debugFloor: 0
-  debugRoof: 1
-  manualDebugFloorRoof: 0
-  showSearchTree: 0
-  unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
-  maxNearestNodeDistance: 100
-  scanOnStartup: 1
-  fullGetNearestSearch: 0
-  prioritizeGraphs: 0
-  prioritizeGraphsLimit: 1
-  colorSettings:
-    _SolidColor: {r: 0.11764706, g: 0.4, b: 0.7882353, a: 0.9}
-    _UnwalkableNode: {r: 1, g: 0, b: 0, a: 0.5}
-    _BoundsHandles: {r: 0.29, g: 0.454, b: 0.741, a: 0.9}
-    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: 0.5}
-    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
-    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
-    _AreaColors:
-    - {r: 0, g: 0, b: 0, a: 0}
-  tagNames: []
-  heuristic: 2
-  heuristicScale: 1
-  threadCount: 1
-  maxFrameTime: 1
-  batchGraphUpdates: 0
-  graphUpdateBatchingInterval: 0.2
-  euclideanEmbedding:
-    mode: 0
-    seed: 0
-    pivotPointRoot: {fileID: 0}
-    spreadOutCount: 1
-  showGraphs: 1
---- !u!4 &1284772748
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1284772746}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0036354, y: -1.5535033, z: 0.0072822385}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1401551060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,6 +1106,9 @@ MonoBehaviour:
   m_ShapePathHash: 0
   m_Mesh: {fileID: 1594189417}
   m_InstanceId: 26948
+  m_LocalBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1 &1457382747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,7 +1525,6 @@ GameObject:
   - component: {fileID: 1913255232}
   - component: {fileID: 1913255240}
   - component: {fileID: 1913255238}
-  - component: {fileID: 1913255239}
   - component: {fileID: 1913255234}
   - component: {fileID: 1913255237}
   m_Layer: 7
@@ -1703,34 +1618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facingDirection: 
   baseScale: {x: 0, y: 0, z: 0}
---- !u!114 &1913255239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1913255231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
+  state: 0
 --- !u!114 &1913255240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1744,8 +1632,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 991520476}
-  speed: 200
-  nextWaypointDistance: 3
+  wait: 1
+  speed: 5
 --- !u!1 &1923492726
 GameObject:
   m_ObjectHideFlags: 0
