@@ -6,7 +6,9 @@ public class AIController : MonoBehaviour
 {
     const string Left = "left";
     const string Right = "right";
-    
+
+    private Rigidbody2D rb;
+
     [HideInInspector]
     public string facingDirection;
     [HideInInspector]
@@ -22,20 +24,24 @@ public class AIController : MonoBehaviour
 
     public State state;
 
+    public float speed;
+
     private void Awake()
     {
         state = State.Patrol;
+        
     }
 
     private void Start()
     {
+        rb = this.GetComponent<Rigidbody2D>();
         facingDirection = Right;
         baseScale = transform.localScale;
         patrol = this.GetComponent<PatrolMode>();
         chase = this.GetComponent<ChaseMode>();
     }
 
-    public void Update()
+    private void Update()
     {
         switch (state)
         {
@@ -50,6 +56,18 @@ public class AIController : MonoBehaviour
                 break;
 
         }
+    }
+
+    private void FixedUpdate()
+    {
+        float velocityX = speed;
+
+        if (facingDirection == Left)
+        {
+            velocityX = -speed;
+        }
+
+        rb.velocity = new Vector2(velocityX, rb.velocity.y);
     }
 
     public void ChangeDirection(string newDirection)
