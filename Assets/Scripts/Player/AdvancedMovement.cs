@@ -8,12 +8,20 @@ public class AdvancedMovement : MonoBehaviour
     public float jumpForce;
     private float moveInput;
 
+    [SerializeField]
+    private Collider2D standingCollider;
+    [SerializeField]
+    private Collider2D crouchingCollider;
+
     private Rigidbody2D rb;
 
     private bool facingRight = true;
 
+    private bool isCrouching;
     private bool isGrounded;
+    private bool canStandUp;
     public Transform groundCheck;
+    public Transform ceillingCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
 
@@ -27,6 +35,8 @@ public class AdvancedMovement : MonoBehaviour
         //anim = GetComponent<Animator>();
         extraJumps = extraJumpsValue;
         rb = GetComponent<Rigidbody2D>();
+        standingCollider.enabled = true;
+        crouchingCollider.enabled = false;
 
     }
    
@@ -35,6 +45,7 @@ public class AdvancedMovement : MonoBehaviour
 
         
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        canStandUp = Physics2D.OverlapCircle(ceillingCheck.position, checkRadius, whatIsGround);
 
         moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
@@ -68,11 +79,28 @@ public class AdvancedMovement : MonoBehaviour
            extraJumps--;
            //anim.SetBool("isJumping", true);
 
-        } else if(Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
-            {
-              rb.velocity = Vector2.up * jumpForce;
-              //anim.SetBool("isJumping", false);
-            }
+        } 
+        else if(Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
+        {
+           rb.velocity = Vector2.up * jumpForce;
+           //anim.SetBool("isJumping", false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            isCrouching = true;
+            crouchingCollider.enabled = true;
+            standingCollider.enabled = false;
+        }
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            isCrouching = false;
+        }
+        if (isCrouching == false && canStandUp == false)
+        {
+            standingCollider.enabled = true;
+            crouchingCollider.enabled = false;
+        }
        
         //if (isGrounded == false)
         //{
