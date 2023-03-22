@@ -7,24 +7,28 @@ public class Vision : MonoBehaviour
     const string Left = "left";
     const string Right = "right";
     private float angle;
+    
 
-    public GameObject enemy;
+    [SerializeField]
+    private GameObject enemy;
     private AIController controller;
     [SerializeField]
-    Transform visionPosition;
+    private Transform visionPosition;
     [SerializeField]
-    float visionAngle;
+    private float visionAngle;
     [SerializeField]
-    float visionRange;
+    private float visionRange;
     private string visionDirection;
 
     [SerializeField]
     private Transform player;
-
+    [SerializeField]
+    private float stunWait;
 
     void Start()
     {
         controller = enemy.GetComponent<AIController>();
+        
     }
 
     private void FixedUpdate()
@@ -42,11 +46,17 @@ public class Vision : MonoBehaviour
         RaycastHit2D raycast = Physics2D.Raycast(visionPosition.position, direction, visionRange);
         if(angle < visionAngle / 2)
         {
-            if (raycast.collider.CompareTag("Player"))
+            if (raycast.collider.CompareTag("Player")&& controller.state == AIController.State.Patrol)
             {
-                print("located");
                 Debug.DrawRay(visionPosition.position, direction, Color.blue);
+                controller.speed = 0;
+                Invoke("Located", stunWait);
             }
         }
+    }
+    private void Located()
+    {
+        print("located");
+        controller.state = AIController.State.Chase;
     }
 }

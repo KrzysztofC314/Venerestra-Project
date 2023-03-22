@@ -13,42 +13,50 @@ public class PatrolMode : MonoBehaviour
     [SerializeField]
     float baseCastDistance;
 
-    private Vector3 baseScale;
     private string facingDirection;
 
-    Rigidbody2D rigidbody;
     [SerializeField]
-    float speed = 5;
+    private float patrolSpeed;
+    [SerializeField]
+    private float ledgeWait;
+
 
     void Start()
     {
         controller = this.GetComponent<AIController>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        controller.speed = patrolSpeed;
     }
 
     public void FixedUpdate()
     {
         facingDirection = controller.facingDirection;
-        baseScale = controller.baseScale;
-        float velocityX = speed;
 
-        if(facingDirection == Left)
-        {
-            velocityX = -speed;
-        }
-
-        rigidbody.velocity = new Vector2(velocityX, rigidbody.velocity.y);
+        
         if (IsHittingWall()||IsNearEdge())
         {
             if (facingDirection == Left)
             {
-                controller.ChangeDirection(Right);
+                controller.speed = 0;
+                Invoke("TurnRight", ledgeWait);
             }
             else if (facingDirection == Right)
             {
-                controller.ChangeDirection(Left);
+                controller.speed = 0;
+                Invoke("TurnLeft", ledgeWait);
             }
         }
+    }
+
+    private void TurnLeft()
+    {
+        controller.ChangeDirection(Left);
+        controller.speed = patrolSpeed;
+    }
+
+    private void TurnRight()
+    {
+        controller.ChangeDirection(Right);
+        controller.speed = patrolSpeed;
     }
 
     bool IsHittingWall()
