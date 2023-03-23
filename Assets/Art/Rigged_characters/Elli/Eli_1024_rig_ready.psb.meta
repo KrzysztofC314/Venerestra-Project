@@ -7701,6 +7701,26 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
+  - name: reka prawa
+    spriteName: 
+    isGroup: 1
+    parentIndex: 1
+    spriteID: e29bac33a2f238649b28aa78da8fb863
+    layerID: -163464274
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: prawa_dlon
+    spriteName: prawa_dlon
+    isGroup: 0
+    parentIndex: 2
+    spriteID: d589da5be48222f4e80b9c1622812167
+    layerID: -1865830161
+    mosaicPosition: {x: 147, y: 615}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
   - name: grzywka_przod
     spriteName: grzywka_przod
     isGroup: 0
@@ -7728,26 +7748,6 @@ ScriptedImporter:
     spriteID: 2fdb969f66160ec4b9698c8f4c54c88a
     layerID: 1765944869
     mosaicPosition: {x: 258, y: 853}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: reka prawa
-    spriteName: 
-    isGroup: 1
-    parentIndex: 1
-    spriteID: e29bac33a2f238649b28aa78da8fb863
-    layerID: -163464274
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: prawa_dlon
-    spriteName: prawa_dlon
-    isGroup: 0
-    parentIndex: 5
-    spriteID: d589da5be48222f4e80b9c1622812167
-    layerID: -1865830161
-    mosaicPosition: {x: 147, y: 615}
     flatten: 0
     isImported: 1
     isVisible: 1
