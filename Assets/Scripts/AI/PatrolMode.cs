@@ -9,9 +9,13 @@ public class PatrolMode : MonoBehaviour
     private AIController controller;
 
     [SerializeField]
-    Transform castPosition;
+    Transform linecastPosition;
+    [SerializeField]
+    Transform boxcastPosition;
     [SerializeField]
     float baseCastDistance;
+    [SerializeField]
+    Vector2 baseBoxcastSize;
 
     private string facingDirection;
 
@@ -62,16 +66,8 @@ public class PatrolMode : MonoBehaviour
     bool IsHittingWall()
     {
         bool val = false;
-        float castDistance = baseCastDistance;
-        if (facingDirection == Left)
-        {
-            castDistance = -baseCastDistance;
-        }
 
-        Vector3 targetPosition = castPosition.position;
-        targetPosition.x += castDistance;
-
-        if(Physics2D.Linecast(castPosition.position, targetPosition, 1 << LayerMask.NameToLayer("Terrain")))
+        if(Physics2D.BoxCast(boxcastPosition.position,baseBoxcastSize,0f,Vector2.zero,LayerMask.NameToLayer("Terrain")))
         {
             val = true;
         }
@@ -84,14 +80,19 @@ public class PatrolMode : MonoBehaviour
         bool val = true;
         float castDistance = baseCastDistance;
 
-        Vector3 targetPosition = castPosition.position;
+        Vector3 targetPosition = linecastPosition.position;
         targetPosition.y -= castDistance;
 
-        if (Physics2D.Linecast(castPosition.position, targetPosition, 1 << LayerMask.NameToLayer("Terrain")))
+        if (Physics2D.Linecast(linecastPosition.position, targetPosition, 1 << LayerMask.NameToLayer("Terrain")))
         {
             val = false;
         }
 
         return val;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(0, 0, 1, 0.5f);
+        Gizmos.DrawCube(boxcastPosition.position, new Vector3(baseBoxcastSize.x, baseBoxcastSize.y, 1));
     }
 }
