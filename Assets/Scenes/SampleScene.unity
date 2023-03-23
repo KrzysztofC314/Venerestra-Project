@@ -1563,6 +1563,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5085042876598411158, guid: d46446f41bb790c47a73f64a2b61bd0c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d46446f41bb790c47a73f64a2b61bd0c, type: 3}
 --- !u!1001 &3555033302079971865
@@ -1622,7 +1626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1026308774194023504, guid: 4776d9bb61edd8f47b365a89764988e6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3555033301627454662, guid: 4776d9bb61edd8f47b365a89764988e6, type: 3}
       propertyPath: walkSpeed
