@@ -96,6 +96,19 @@ public class AdvancedMovement : MonoBehaviour
             rb.velocity = Vector2.up * jumpForce;
         }
 
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            Crouch();
+        }
+        else if (Input.GetKey(KeyCode.Z))
+        {
+            Sprint();
+        }
+        else
+        {
+            Default();
+        }
+
     }
 
     void Flip()
@@ -106,29 +119,25 @@ public class AdvancedMovement : MonoBehaviour
         transform.localScale = Scaler;
     }
 
-    void Sprint(bool isSprinting)
+    void Sprint()
     {
-        if (isSprinting&&standingCollider.enabled)
+        if (!cantStandUp)
         {
             speed = sprintSpeed;
         }
-        if (!isSprinting)
-        {
-            speed = walkSpeed;
-        }
     }
 
-    void Crouch(bool isCrouching)
+    void Crouch()
     {
-        if (isCrouching)
-        {
-            crouchingCollider.enabled = true;
-            standingCollider.enabled = false;
-            speed = crouchSpeed;
-            crouchAnim = true;
-        }
+        crouchingCollider.enabled = true;
+        standingCollider.enabled = false;
+        speed = crouchSpeed;
+        crouchAnim = true;
+    }
 
-        if (!isCrouching && !cantStandUp)
+    void Default()
+    {
+        if (!cantStandUp)
         {
             standingCollider.enabled = true;
             crouchingCollider.enabled = false;
