@@ -9,6 +9,8 @@ public class AdvancedMovement : MonoBehaviour
     [SerializeField]
     private float walkSpeed;
     [SerializeField]
+    private float sprintSpeed;
+    [SerializeField]
     private float crouchSpeed;
     [SerializeField]
     private float jumpForce;
@@ -27,7 +29,9 @@ public class AdvancedMovement : MonoBehaviour
 
     private bool isCrouching;
     private bool isGrounded;
-    private bool canStandUp;
+    private bool cantStandUp;
+    [HideInInspector]
+    public bool crouchAnim;
     [SerializeField]
     private Transform groundCheck;
     [SerializeField]
@@ -40,6 +44,8 @@ public class AdvancedMovement : MonoBehaviour
     private int extraJumps;
     [SerializeField]
     private int extraJumpsValue;
+
+    private KeyCode key;
     
     
 
@@ -56,7 +62,7 @@ public class AdvancedMovement : MonoBehaviour
     void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-        canStandUp = Physics2D.OverlapCircle(ceillingCheck.position, checkRadius, whatIsGround);
+        cantStandUp = Physics2D.OverlapCircle(ceillingCheck.position, checkRadius, whatIsGround);
 
         moveInput = Input.GetAxis("Horizontal");
         velocityX = moveInput * speed;
@@ -76,37 +82,20 @@ public class AdvancedMovement : MonoBehaviour
     {
         if (isGrounded == true)
         {
-           extraJumps = extraJumpsValue;
-        }
-        
-        if(Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
-        {
-           rb.velocity = Vector2.up * jumpForce;
-           extraJumps--;
-
-        } 
-        else if(Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
-        {
-           rb.velocity = Vector2.up * jumpForce;
+            extraJumps = extraJumpsValue;
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
         {
-            isCrouching = true;
-            crouchingCollider.enabled = true;
-            standingCollider.enabled = false;
-            speed = crouchSpeed;
+            rb.velocity = Vector2.up * jumpForce;
+            extraJumps--;
+
         }
-        if (Input.GetKeyUp(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
         {
-            isCrouching = false;
+            rb.velocity = Vector2.up * jumpForce;
         }
-        if (isCrouching == false && canStandUp == false)
-        {
-            standingCollider.enabled = true;
-            crouchingCollider.enabled = false;
-            speed = walkSpeed;
-        }
+
     }
 
     void Flip()
@@ -115,6 +104,37 @@ public class AdvancedMovement : MonoBehaviour
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
+    }
+
+    void Sprint(bool isSprinting)
+    {
+        if (isSprinting&&standingCollider.enabled)
+        {
+            speed = sprintSpeed;
+        }
+        if (!isSprinting)
+        {
+            speed = walkSpeed;
+        }
+    }
+
+    void Crouch(bool isCrouching)
+    {
+        if (isCrouching)
+        {
+            crouchingCollider.enabled = true;
+            standingCollider.enabled = false;
+            speed = crouchSpeed;
+            crouchAnim = true;
+        }
+
+        if (!isCrouching && !cantStandUp)
+        {
+            standingCollider.enabled = true;
+            crouchingCollider.enabled = false;
+            speed = walkSpeed;
+            crouchAnim = false;
+        }
     }
    
 }

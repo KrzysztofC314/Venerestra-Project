@@ -8,24 +8,38 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField]
     private AdvancedMovement movement;
     private float moveInput;
+    private bool isCrouching;
     
     void Start()
     {
         anim = GetComponent<Animator>();
+        anim.SetBool("isCrouching", false);
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        moveInput = movement.velocityX;
+        moveInput = Mathf.Abs(movement.velocityX);
         anim.SetFloat("moveInput", moveInput);
     }
+    private void Update()
+    {
+        isCrouching = movement.crouchAnim;
+        if (isCrouching)
+        {
+            Crouch(true);
+        }
+        if (!isCrouching)
+        {
+            Crouch(false);
+        }
+    }
 
-    void Crouch(bool isCrouching)
+    public void Crouch(bool isCrouching)
     {
         anim.SetBool("isCrouching", isCrouching);
     }
-    void Jump(bool isJumping)
+    public void Jump(bool isJumping)
     {
         anim.SetBool("isJumping", isJumping);
     }
