@@ -16,6 +16,11 @@ public class ChaseMode : MonoBehaviour
     private float enemyPosition;
     private float wherePlayer;
 
+    [SerializeField] private Transform gunPoint;
+    [SerializeField] private GameObject bulletTrail;
+    [SerializeField] private float weaponRange = 10f;
+    [SerializeField] private int weaponDamage = 10;
+
     
 
     void Start()
@@ -43,6 +48,28 @@ public class ChaseMode : MonoBehaviour
         }
 
     }
+
+    public void Shoot()
+    {
+        var hit = Physics2D.Raycast(gunPoint.position, transform.right, weaponRange);
+
+        var trail = Instantiate(bulletTrail, gunPoint.position, transform.rotation);
+
+        var trailScript = trail.GetComponent<BulletTrail>();
+
+        if (hit.collider != null)
+        {
+            trailScript.SetTargetPosition(hit.point);
+            var health = hit.collider.GetComponent<PlayerHealth>();
+            health.Hurt(weaponDamage);
+        }
+        else
+        {
+            var endPostion = gunPoint.position + transform.right * weaponRange;
+            trailScript.SetTargetPosition(endPostion);
+        }
+    }
+
     private void TurnLeft()
     {
         controller.ChangeDirection(Left);

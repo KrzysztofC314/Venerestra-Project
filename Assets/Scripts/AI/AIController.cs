@@ -13,6 +13,7 @@ public class AIController : MonoBehaviour
     public string facingDirection;
     [HideInInspector]
     public Vector3 baseScale;
+    [HideInInspector]
     public enum State
     {
         Patrol,
@@ -21,11 +22,14 @@ public class AIController : MonoBehaviour
 
     private PatrolMode patrol;
     private ChaseMode chase;
-
+    [HideInInspector]
     public State state;
-
+    [HideInInspector]
     public float speed;
 
+    [SerializeField] private Transform vulnerableCheck;
+    [SerializeField] Vector2 vulnerableCheckSize;
+    [HideInInspector] public bool vulnerable;
     private void Awake()
     {
         state = State.Patrol;
@@ -56,6 +60,8 @@ public class AIController : MonoBehaviour
                 break;
 
         }
+        vulnerable = IsVulnerable();
+        
     }
 
     private void FixedUpdate()
@@ -86,5 +92,17 @@ public class AIController : MonoBehaviour
         transform.localScale = newScale;
 
         facingDirection = newDirection;
+    }
+
+    private bool IsVulnerable()
+    {
+        bool val = false;
+
+        if (Physics2D.BoxCast(vulnerableCheck.position, vulnerableCheckSize, 0f, Vector2.zero, LayerMask.NameToLayer("Player")))
+        {
+            val = true;
+        }
+
+        return val;
     }
 }

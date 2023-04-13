@@ -30,6 +30,7 @@ public class AdvancedMovement : MonoBehaviour
     private bool isCrouching;
     private bool isGrounded;
     private bool cantStandUp;
+    [HideInInspector] public bool ledgeDetected;
     [HideInInspector]
     public bool crouchAnim;
     [SerializeField]
