@@ -21,8 +21,8 @@ public class BulletTrail : MonoBehaviour
         transform.position = Vector3.Lerp(startPosition, targetPosition, progress);
     }
 
-    public void SetTargetPosition(Vector3 targetPosition)
+    public void SetTargetPosition(Vector3 _targetPosition)
     {
-        targetPosition = targetPosition.WithAxis(Axis.Z, -1);
+        targetPosition = _targetPosition.WithAxis(Axis.Z, -1);
     }
 }

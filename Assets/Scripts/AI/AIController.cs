@@ -76,6 +76,14 @@ public class AIController : MonoBehaviour
         rb.velocity = new Vector2(velocityX, rb.velocity.y);
     }
 
+    public void Die()
+    {
+        if (vulnerable)
+        {
+            this.enabled = false;
+        }
+    }
+
     public void ChangeDirection(string newDirection)
     {
         Vector3 newScale = baseScale;
@@ -104,5 +112,10 @@ public class AIController : MonoBehaviour
         }
 
         return val;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.DrawCube(vulnerableCheck.position, new Vector3(vulnerableCheckSize.x, vulnerableCheckSize.y, 1));
     }
 }

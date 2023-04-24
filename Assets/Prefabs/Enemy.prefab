@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &266029565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 266029566}
+  m_Layer: 7
+  m_Name: VulnerableCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &266029566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266029565}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.4, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2637317331308741117}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1682048407
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,8 +150,8 @@ MonoBehaviour:
   chaseVisionRange: 10
   player: {fileID: 0}
   stunWait: 0.3
-  chillTimer: 0
-  chillTime: 3
+  chillTime: 6
+  shootTime: 1
 --- !u!1 &1380872498872534207
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +361,6 @@ GameObject:
   - component: {fileID: 1380872499147696758}
   - component: {fileID: 1380872499147696754}
   - component: {fileID: 1380872499147696757}
-  - component: {fileID: 819716247}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -355,6 +385,7 @@ Transform:
   - {fileID: 1748814304}
   - {fileID: 5793402804577317418}
   - {fileID: 1682048408}
+  - {fileID: 266029566}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -391,9 +422,10 @@ MonoBehaviour:
   target: {fileID: 0}
   chaseSpeed: 5
   confusionWait: 0.5
-  gunPoint: {fileID: 0}
-  bulletTrail: {fileID: 0}
+  gunPoint: {fileID: 1682048408}
+  bulletTrail: {fileID: 7504496553955024223, guid: 359ce8761e4137840a3768d94ebe6d8a, type: 3}
   weaponRange: 10
+  weaponDamage: 10
 --- !u!114 &1380872499147696758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +442,9 @@ MonoBehaviour:
   baseScale: {x: 0, y: 0, z: 0}
   state: 0
   speed: 0
+  vulnerableCheck: {fileID: 266029566}
+  vulnerableCheckSize: {x: 1.6, y: 1.4}
+  vulnerable: 0
 --- !u!50 &1380872499147696754
 Rigidbody2D:
   serializedVersion: 4
@@ -447,18 +482,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.27990913}
   m_Size: {x: 1.05, y: 3.140182}
   m_Direction: 0
---- !u!114 &819716247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5085042876598411158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce4464f39277ed34db97079435c7e15d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8788258995000100971
 GameObject:
   m_ObjectHideFlags: 0

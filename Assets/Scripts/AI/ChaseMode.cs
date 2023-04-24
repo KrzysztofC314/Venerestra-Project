@@ -51,7 +51,12 @@ public class ChaseMode : MonoBehaviour
 
     public void Shoot()
     {
-        var hit = Physics2D.Raycast(gunPoint.position, transform.right, weaponRange);
+        Vector2 shootDirection = transform.right;
+        if(facingDirection == Left)
+        {
+            shootDirection = -transform.right;
+        }
+        var hit = Physics2D.Raycast(gunPoint.position, shootDirection, weaponRange);
 
         var trail = Instantiate(bulletTrail, gunPoint.position, transform.rotation);
 
