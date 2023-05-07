@@ -14,6 +14,7 @@ public class AdvancedMovement : MonoBehaviour
     private float crouchSpeed;
     [SerializeField]
     private float jumpForce;
+    private float jumpSpeed;
     private float moveInput;
 
     [SerializeField]
@@ -66,7 +67,14 @@ public class AdvancedMovement : MonoBehaviour
         cantStandUp = Physics2D.OverlapCircle(ceillingCheck.position, checkRadius, whatIsGround);
 
         moveInput = Input.GetAxis("Horizontal");
-        velocityX = moveInput * speed;
+        if (isGrounded)
+        {
+            velocityX = moveInput * speed;
+        }
+        else
+        {
+            velocityX = moveInput * jumpSpeed;
+        }
         rb.velocity = new Vector2(velocityX, rb.velocity.y);
 
         if(facingRight == false && moveInput > 0)
@@ -88,6 +96,7 @@ public class AdvancedMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
         {
+            Jumpspeed(speed);
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
 
@@ -145,6 +154,11 @@ public class AdvancedMovement : MonoBehaviour
             speed = walkSpeed;
             crouchAnim = false;
         }
+    }
+    float Jumpspeed(float speed)
+    {
+        jumpSpeed = speed;
+        return jumpSpeed;
     }
    
 }
