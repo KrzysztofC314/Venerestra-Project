@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AdvancedMovement : MonoBehaviour
 {
-    
+
     private float speed;
     [SerializeField]
     private float walkSpeed;
@@ -31,7 +31,7 @@ public class AdvancedMovement : MonoBehaviour
     private bool isCrouching;
     private bool isGrounded;
     private bool cantStandUp;
-    [HideInInspector] public bool ledgeDetected;
+    public bool ledgeDetected;
     [HideInInspector]
     public bool crouchAnim;
     [SerializeField]
@@ -48,6 +48,14 @@ public class AdvancedMovement : MonoBehaviour
     private int extraJumpsValue;
 
     private KeyCode key;
+
+    [SerializeField] private Vector2 offset1;
+    [SerializeField] private Vector2 offset2;
+    private Vector2 climbBegunPosition;
+    private Vector2 climbOverPosition;
+
+    private bool canGrabLedge = true;
+    [HideInInspector] public bool canClimb;
     
     
 
@@ -89,6 +97,7 @@ public class AdvancedMovement : MonoBehaviour
 
     void Update()
     {
+        CheckForLedge();
         if (isGrounded == true)
         {
             extraJumps = extraJumpsValue;
@@ -119,6 +128,29 @@ public class AdvancedMovement : MonoBehaviour
             Default();
         }
 
+    }
+
+    private void CheckForLedge()
+    {
+        if (ledgeDetected && canGrabLedge)
+        {
+            canGrabLedge = false;
+
+            Vector2 ledgePosition = GetComponentInChildren<LedgeDetection>().transform.position;
+            climbBegunPosition = ledgePosition + offset1;
+            climbOverPosition = ledgePosition + offset2;
+
+            canClimb = true;
+        }
+        if (canClimb)
+            transform.position = climbBegunPosition;
+    }
+
+    public void LedgeClimbOver()
+    {
+        canClimb = false;
+        transform.position = climbOverPosition;
+        canGrabLedge = true;
     }
 
     void Flip()
