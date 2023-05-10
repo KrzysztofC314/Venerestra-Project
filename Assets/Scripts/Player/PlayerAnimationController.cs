@@ -9,11 +9,12 @@ public class PlayerAnimationController : MonoBehaviour
     private AdvancedMovement movement;
     private float moveInput;
     private bool isCrouching;
+    private bool isClimbing;
     
     void Start()
     {
         anim = GetComponent<Animator>();
-        anim.SetBool("isCrouching", false);
+        
     }
 
     // Update is called once per frame
@@ -25,22 +26,14 @@ public class PlayerAnimationController : MonoBehaviour
     private void Update()
     {
         isCrouching = movement.crouchAnim;
-        if (isCrouching)
-        {
-            Crouch(true);
-        }
-        if (!isCrouching)
-        {
-            Crouch(false);
-        }
+        isClimbing = movement.canClimb;
+        anim.SetBool("isCrouching", isCrouching);
+        anim.SetBool("isClimbing", isClimbing);
     }
 
-    public void Crouch(bool isCrouching)
+    private void LedgeClimb()
     {
-        anim.SetBool("isCrouching", isCrouching);
+        movement.LedgeClimbOver();
     }
-    public void Jump(bool isJumping)
-    {
-        anim.SetBool("isJumping", isJumping);
-    }
+
 }
