@@ -26,7 +26,7 @@ public class PlayerAnimationController : MonoBehaviour
     private void Update()
     {
         isCrouching = movement.crouchAnim;
-        isClimbing = movement.canClimb;
+        isClimbing = movement.isClimbing;
         anim.SetBool("isCrouching", isCrouching);
         anim.SetBool("isClimbing", isClimbing);
     }

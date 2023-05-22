@@ -55,7 +55,8 @@ public class AdvancedMovement : MonoBehaviour
     private Vector2 climbOverPosition;
 
     private bool canGrabLedge = true;
-    [HideInInspector] public bool canClimb;
+    private bool canClimb;
+    [HideInInspector] public bool isClimbing;
     
     
 
@@ -78,6 +79,7 @@ public class AdvancedMovement : MonoBehaviour
         if (isGrounded)
         {
             velocityX = moveInput * speed;
+            jumpSpeed = Jumpspeed(speed);
         }
         else
         {
@@ -105,7 +107,7 @@ public class AdvancedMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
         {
-            Jumpspeed(speed);
+            
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
 
@@ -143,11 +145,23 @@ public class AdvancedMovement : MonoBehaviour
             canClimb = true;
         }
         if (canClimb)
+        {
             transform.position = climbBegunPosition;
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                isClimbing = true;
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                canClimb = false;
+                transform.position = transform.position;
+            }
+        }
     }
 
     public void LedgeClimbOver()
     {
+        isClimbing = false;
         canClimb = false;
         transform.position = climbOverPosition;
         canGrabLedge = true;
@@ -159,6 +173,8 @@ public class AdvancedMovement : MonoBehaviour
         Vector3 Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
+        offset1.x *= -1;
+        offset2.x *= -1;
     }
 
     void Sprint()
@@ -173,6 +189,7 @@ public class AdvancedMovement : MonoBehaviour
     {
         crouchingCollider.enabled = true;
         standingCollider.enabled = false;
+        canGrabLedge = false;
         speed = crouchSpeed;
         crouchAnim = true;
     }
@@ -185,9 +202,10 @@ public class AdvancedMovement : MonoBehaviour
             crouchingCollider.enabled = false;
             speed = walkSpeed;
             crouchAnim = false;
+            canGrabLedge = true;
         }
     }
-    float Jumpspeed(float speed)
+    private float Jumpspeed(float speed)
     {
         jumpSpeed = speed;
         return jumpSpeed;
