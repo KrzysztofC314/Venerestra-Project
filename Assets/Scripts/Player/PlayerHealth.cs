@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int setHealth;
-    private int health;
+    [HideInInspector] public int health;
+    [SerializeField]
+    private HealthBar healthBar;
     void Start()
     {
-        
+        health = setHealth;
+        healthBar.SetMaxHealth(health);
     }
 
     void Update()
@@ -19,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
     public void Hurt(int damage)
     {
         health -= damage;
+        healthBar.SetHealth(health);
         Debug.Log("Hit!");
         if (health <= 0)
         {
