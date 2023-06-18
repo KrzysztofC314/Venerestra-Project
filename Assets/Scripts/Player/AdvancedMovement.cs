@@ -46,6 +46,8 @@ public class AdvancedMovement : MonoBehaviour
     private int extraJumps;
     [SerializeField]
     private int extraJumpsValue;
+    [SerializeField]
+    private AudioSource footsteps;
 
     private KeyCode key;
 
@@ -94,6 +96,15 @@ public class AdvancedMovement : MonoBehaviour
         } else if(facingRight == true && moveInput < 0)
         {
             Flip();
+        }
+
+        if (Mathf.Abs(velocityX) > 0)
+        {
+            footsteps.enabled = true;
+        }
+        else
+        {
+            footsteps.enabled = false;
         }
     }
 

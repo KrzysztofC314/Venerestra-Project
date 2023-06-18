@@ -8,6 +8,7 @@ public class AIController : MonoBehaviour
     const string Right = "right";
 
     private Rigidbody2D rb;
+    [SerializeField] private Animator anim;
 
     [HideInInspector]
     public string facingDirection;
@@ -74,6 +75,7 @@ public class AIController : MonoBehaviour
         }
 
         rb.velocity = new Vector2(velocityX, rb.velocity.y);
+        anim.SetFloat("moveInput", speed);
     }
 
     public void Die()
