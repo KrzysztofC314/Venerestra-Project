@@ -10,6 +10,16 @@ public class DialogueBox : MonoBehaviour
     [SerializeField] private GameObject healthBar;
     public string[] lines;
     public float textSpeed;
+    [SerializeField] private enum Character
+    {
+        Elli,
+        MissionControl,
+        None,
+    }
+
+    [SerializeField] private Character[] character;
+    [SerializeField] GameObject elliDialogueBox;
+    [SerializeField] GameObject missionControlDialogueBox;
 
     private int index;
 
@@ -42,6 +52,7 @@ public class DialogueBox : MonoBehaviour
     {
         index = 0;
         StartCoroutine(TypeLine());
+        ShowBox();
     }
 
     IEnumerator TypeLine()
@@ -60,11 +71,34 @@ public class DialogueBox : MonoBehaviour
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
+            ShowBox();
         }
         else
         {
             dialogueBox.SetActive(false);
             healthBar.SetActive(true);
+            elliDialogueBox.SetActive(false);
+            missionControlDialogueBox.SetActive(false);
+        }
+    }
+
+    void ShowBox()
+    {
+        switch (character[index])
+        {
+            default:
+            case Character.None:
+                elliDialogueBox.SetActive(false);
+                missionControlDialogueBox.SetActive(false);
+                break;
+            case Character.Elli:
+                missionControlDialogueBox.SetActive(false);
+                elliDialogueBox.SetActive(true);
+                break;
+            case Character.MissionControl:
+                elliDialogueBox.SetActive(false);
+                missionControlDialogueBox.SetActive(true);
+                break;
         }
     }
 }
